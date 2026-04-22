@@ -5,14 +5,15 @@ import {
   Tabs, TabsContent, TabsList, TabsTrigger,
   Card, CardContent, CardDescription, CardHeader, CardTitle,
   Badge, Button, Input, Textarea, Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
-  Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle,
+  Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger,
   ScrollArea, Separator, Avatar, AvatarFallback, Tooltip,
   Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,
 } from '@/components/ui'
 import {
   Bot, Send, Plus, MessageSquare, Search, Sparkles, BookOpen, Trash2,
   ChevronLeft, ChevronRight, Code, Shield, Lightbulb, Building2, History,
-  Copy, Check, RefreshCw, Settings, X, Loader2, ChevronDown, Hash, Link2, Tag, FolderOpen
+  Copy, Check, RefreshCw, Settings, X, Loader2, ChevronDown, Hash, Link2, Tag, FolderOpen,
+  Info, ExternalLink, Github, Cpu, Database, Globe, Zap, Users, Layers
 } from 'lucide-react'
 import { Toaster, toast } from 'sonner'
 
@@ -125,6 +126,7 @@ export default function Home() {
                 <Sparkles className="w-3 h-3" />
                 NVIDIA AI
               </Badge>
+              <AboutDialog />
             </div>
           </div>
         </div>
@@ -176,6 +178,191 @@ export default function Home() {
 
       <Toaster position="top-right" richColors />
     </div>
+  )
+}
+
+// ==================== About Dialog ====================
+function AboutDialog() {
+  const [open, setOpen] = useState(false)
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="ghost" size="icon" className="h-9 w-9" title="关于">
+          <Info className="w-4 h-4" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl max-h-[85vh] overflow-hidden">
+        <DialogHeader className="pb-2">
+          <DialogTitle className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-800 to-slate-600 flex items-center justify-center text-white font-bold text-lg">
+              仓
+            </div>
+            <div>
+              <div className="text-lg">仓颉平台</div>
+              <div className="text-sm font-normal text-slate-500">Cangjie Platform v1.0</div>
+            </div>
+          </DialogTitle>
+          <DialogDescription className="text-sm">
+            基于AI的知识蒸馏技能管理平台，集成代码审查、安全审计、提示工程和架构设计等专业技能。
+          </DialogDescription>
+        </DialogHeader>
+        <ScrollArea className="max-h-[60vh] pr-1">
+          <div className="space-y-6">
+            {/* 平台介绍 */}
+            <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-4 space-y-2">
+              <h3 className="font-semibold text-slate-800 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-amber-500" />
+                平台介绍
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                仓颉平台是一个面向开发者和团队的 <strong>AI 知识蒸馏与技能管理系统</strong>。平台将专业的工程知识组织为结构化的技能包，
+                通过 NVIDIA AI 大语言模型实现智能对话和知识蒸馏，帮助团队沉淀、分享和应用工程经验。
+              </p>
+            </div>
+
+            {/* 核心能力 */}
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-800 flex items-center gap-2">
+                <Layers className="w-4 h-4 text-violet-500" />
+                核心能力
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="bg-white border rounded-lg p-3 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4 text-emerald-600" />
+                    <span className="font-medium text-sm">智能对话</span>
+                  </div>
+                  <p className="text-xs text-slate-500">内置多个专业 AI 助手，支持多模型切换和上下文连续对话</p>
+                </div>
+                <div className="bg-white border rounded-lg p-3 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-blue-600" />
+                    <span className="font-medium text-sm">技能管理</span>
+                  </div>
+                  <p className="text-xs text-slate-500">4 大技能包、18 项专业技能，涵盖代码审查、安全审计等领域</p>
+                </div>
+                <div className="bg-white border rounded-lg p-3 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-600" />
+                    <span className="font-medium text-sm">知识蒸馏</span>
+                  </div>
+                  <p className="text-xs text-slate-500">选择技能组合，通过 AI 蒸馏生成综合分析报告</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 技能包概览 */}
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-800 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-teal-500" />
+                技能包概览
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  { icon: '🔍', name: '代码审查技能包', desc: '代码质量分析 · Bug检测 · 性能优化 · 重构建议 · 测试审查', color: 'from-emerald-500 to-teal-600' },
+                  { icon: '🛡️', name: '安全审计技能包', desc: '漏洞扫描 · 认证授权 · 数据安全 · API加固 · 依赖安全', color: 'from-red-500 to-rose-600' },
+                  { icon: '✨', name: '提示工程技能包', desc: '提示词设计 · 优化策略 · 少样本学习 · 思维链推理', color: 'from-amber-500 to-orange-600' },
+                  { icon: '🏗️', name: '架构设计技能包', desc: '架构模式 · 技术选型 · 可扩展设计 · 分布式系统', color: 'from-violet-500 to-purple-600' },
+                ].map((pack) => (
+                  <div key={pack.name} className="flex items-start gap-3 p-3 bg-white border rounded-lg">
+                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${pack.color} flex items-center justify-center text-sm shrink-0`}>
+                      {pack.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-medium text-sm text-slate-800">{pack.name}</p>
+                      <p className="text-xs text-slate-500 mt-0.5">{pack.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* AI 助手 */}
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-800 flex items-center gap-2">
+                <Users className="w-4 h-4 text-pink-500" />
+                AI 助手
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                {[
+                  { avatar: '🔍', name: '代码审查助手', desc: '识别代码问题和质量风险' },
+                  { avatar: '🛡️', name: '安全审计专家', desc: '发现安全漏洞和加固建议' },
+                  { avatar: '🏗️', name: '架构设计顾问', desc: '提供架构方案和选型建议' },
+                ].map((agent) => (
+                  <div key={agent.name} className="flex items-center gap-2.5 p-3 bg-white border rounded-lg">
+                    <span className="text-xl">{agent.avatar}</span>
+                    <div>
+                      <p className="font-medium text-sm text-slate-800">{agent.name}</p>
+                      <p className="text-xs text-slate-500">{agent.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 技术栈 */}
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-800 flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-indigo-500" />
+                技术栈
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: 'Next.js 16', icon: <Globe className="w-3 h-3" /> },
+                  { label: 'TypeScript', icon: <Code className="w-3 h-3" /> },
+                  { label: 'Tailwind CSS', icon: <Sparkles className="w-3 h-3" /> },
+                  { label: 'shadcn/ui', icon: <Layers className="w-3 h-3" /> },
+                  { label: 'Prisma ORM', icon: <Database className="w-3 h-3" /> },
+                  { label: 'PostgreSQL', icon: <Database className="w-3 h-3" /> },
+                  { label: 'NVIDIA NIM', icon: <Cpu className="w-3 h-3" /> },
+                  { label: 'Vercel', icon: <Globe className="w-3 h-3" /> },
+                ].map((tech) => (
+                  <Badge key={tech.label} variant="secondary" className="gap-1.5 py-1 px-2.5">
+                    {tech.icon}
+                    {tech.label}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* 支持的模型 */}
+            <div className="space-y-3">
+              <h3 className="font-semibold text-slate-800 flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-emerald-500" />
+                支持的 AI 模型
+              </h3>
+              <div className="space-y-1.5">
+                {[
+                  { name: 'Llama 3.1 8B Instruct', id: 'meta/llama-3.1-8b-instruct' },
+                  { name: 'Llama 3.1 70B Instruct', id: 'meta/llama-3.1-70b-instruct' },
+                  { name: 'Mixtral 8x22B Instruct', id: 'mistralai/mixtral-8x22b-instruct-v0.1' },
+                  { name: 'Gemma 2 9B IT', id: 'google/gemma-2-9b-it' },
+                  { name: 'Nemotron 4 340B Instruct', id: 'nvidia/nemotron-4-340b-instruct' },
+                ].map((model) => (
+                  <div key={model.id} className="flex items-center gap-2 text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    <span className="text-slate-700 font-medium">{model.name}</span>
+                    <code className="text-xs text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded ml-auto">{model.id}</code>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ScrollArea>
+        <div className="flex items-center justify-between pt-4 border-t">
+          <p className="text-xs text-slate-400">
+            Built with Next.js & NVIDIA AI
+          </p>
+          <Button variant="outline" size="sm" className="gap-1.5" asChild>
+            <a href="https://github.com/dav-niu474/cangjie-agent" target="_blank" rel="noopener noreferrer">
+              <Github className="w-3.5 h-3.5" />
+              GitHub
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }
 
