@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model SkillPack {
+  id          String  @id @default(cuid())
+  name        String
+  description String
+  icon        String
+  order       Int     @default(0)
+  skills      Skill[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  content     String    // Full skill prompt / content
+  references  String    // Reference materials
+  tags        String    // JSON array string
+  category    String
+  packId      String
+  pack        SkillPack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  order       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Agent {
+  id           String   @id @default(cuid())
+  name         String
+  description  String
+  avatar       String
+  systemPrompt String
+  model        String   @default("meta/llama-3.1-8b-instruct")
+  order        Int      @default(0)
+  conversations Conversation[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Conversation {
+  id          String   @id @default(cuid())
+  title       String
+  agentId     String?
+  model       String   @default("meta/llama-3.1-8b-instruct")
+  agent       Agent?   @relation(fields: [agentId], references: [id])
+  messages    Message[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  role           String       // user, assistant, system
+  content        String
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+}
