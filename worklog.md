@@ -26,3 +26,22 @@ Stage Summary:
 - Database: PostgreSQL via Vercel Postgres (Supabase), persistent across serverless invocations
 - Deployment: https://cangjie-agent.vercel.app
 - GitHub: https://github.com/dav-niu474/cangjie-agent
+
+---
+Task ID: 2
+Agent: Main
+Task: Add README.md and About dialog to the platform
+
+Work Log:
+- Created comprehensive README.md with project overview, feature list, tech stack, skill pack details, database models, API reference, and deployment guide
+- Added AboutDialog component to page.tsx with rich content: platform intro, core capabilities, skill pack overview, AI assistants, tech stack badges, supported AI models list
+- Added Info button (ℹ️) in the header that opens the About dialog
+- Added GitHub link in the About dialog footer
+- Fixed lint error (added DialogTrigger import)
+- Pushed to GitHub and deployed to Vercel production
+
+Stage Summary:
+- README.md: Complete project documentation with badges, tables, and code blocks
+- About Dialog: Beautiful dialog with platform overview, skill packs, AI assistants, tech stack, model list, and GitHub link
+- Deployed: https://cangjie-agent-dav-niu474s-projects.vercel.app (production)
+- Commit: feat: add README.md and About dialog with platform details (ce804e7)
