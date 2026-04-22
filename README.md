@@ -8,6 +8,17 @@
   基于 NVIDIA AI 的知识蒸馏技能管理平台，集成代码审查、安全审计、提示工程和架构设计等专业技能。
 </p>
 
+<p align="center">
+  <a href="https://cangjie-agent-dav-niu474s-projects.vercel.app">
+    <img src="https://img.shields.io/badge/🚀-线上预览-000?style=flat-square&logo=vercel" alt="Vercel" />
+  </a>
+  <a href="https://github.com/dav-niu474/cangjie-agent">
+    <img src="https://img.shields.io/badge/GitHub-仓库-black?style=flat-square&logo=github" alt="GitHub" />
+  </a>
+</p>
+
+> **🔗 线上地址：** [cangjie-agent-dav-niu474s-projects.vercel.app](https://cangjie-agent-dav-niu474s-projects.vercel.app)
+
 ---
 
 ## 项目简介
@@ -218,7 +229,7 @@ bun run dev
 
 项目已部署到 Vercel：
 
-**🔗 [cangjie-agent.vercel.app](https://cangjie-agent.vercel.app)**
+**🔗 [cangjie-agent-dav-niu474s-projects.vercel.app](https://cangjie-agent-dav-niu474s-projects.vercel.app)**
 
 ### Vercel 配置
 
