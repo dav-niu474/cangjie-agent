@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("cangjie_POSTGRES_PRISMA_URL")
+  directUrl = env("cangjie_POSTGRES_URL_NON_POOLING")
 }
 
 model SkillPack {
@@ -22,9 +23,9 @@ model Skill {
   id          String    @id @default(cuid())
   name        String
   description String
-  content     String    // Full skill prompt / content
-  references  String    // Reference materials
-  tags        String    // JSON array string
+  content     String
+  references  String
+  tags        String
   category    String
   packId      String
   pack        SkillPack @relation(fields: [packId], references: [id], onDelete: Cascade)
@@ -59,7 +60,7 @@ model Conversation {
 
 model Message {
   id             String       @id @default(cuid())
-  role           String       // user, assistant, system
+  role           String
   content        String
   conversationId String
   conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)

@@ -56,3 +56,6 @@ server.log
 dev.log
 server.log
 .next/
+.vercel/
+.env.vercel
+.env.production
